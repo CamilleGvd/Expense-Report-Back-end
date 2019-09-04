@@ -1,9 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 mongoose.connect("mongodb://localhost/expense", {
   useNewUrlParser: true
@@ -49,15 +51,17 @@ app.get("/", async (req, res) => {
 /* 3- Update : total per user */
 
 /* Ideas : find by ... Front-end ?*/
-app.get("/total", async (req, res) => {
-  try {
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
+// app.get("/total", async (req, res) => {
+//   try {
+//   } catch (error) {
+//     res.status(400).json({ error: error.message });
+//   }
+// });
 
 // app.listen(3000, () => {
 //   console.log("Server started");
 // });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, () => {
+  console.log("Server started");
+});
